@@ -3,47 +3,47 @@
     <div class="header-container">
       <!-- Left Section -->
       <div class="header-left">
-        <div class="catchphrase">
+        <div class="header-logo-mobile" v-if="isMobile">
+          <div class="agruni-lettermark">A</div>
+        </div>
+        <div class="catchphrase" v-else>
           <div class="agruni-lettermark">A</div>
           <span><strong>Agruni</strong> — Keeping Rwanda Clean and Green</span>
         </div>
       </div>
 
+      <!-- Mobile Center Title -->
+      <div class="header-center-mobile" v-if="isMobile">
+        <span class="mobile-title">{{ pageTitle }}</span>
+      </div>
+
       <!-- Right Section -->
       <div class="header-right">
         <!-- Notifications -->
-        <div class="header-item">
+        <div class="header-item" v-if="!isMobile || isDashboard">
           <button class="icon-button" @click="toggleNotifications" :aria-label="notificationCount > 0 ? notificationCount + ' unread notifications' : 'Notifications'">
             <Icon icon="ph:bell" />
             <span v-if="notificationCount > 0" class="notification-badge" aria-hidden="true">{{ notificationCount }}</span>
           </button>
         </div>
 
-        <!-- Messages -->
-        <div class="header-item">
-          <button class="icon-button" @click="toggleMessages" :aria-label="messageCount > 0 ? messageCount + ' unread messages' : 'Messages'">
-            <Icon icon="ph:chat-circle-dots" />
-            <span v-if="messageCount > 0" class="message-badge" aria-hidden="true">{{ messageCount }}</span>
-          </button>
-        </div>
-
-        <!-- Language Switcher -->
-        <div class="header-item">
+        <!-- Language Switcher (Desktop Only, Mobile uses Profile) -->
+        <div class="header-item" v-if="!isMobile">
           <LanguageSwitcher />
         </div>
 
-        <!-- User Menu -->
+        <!-- User Menu / Profile -->
         <div class="header-item user-menu">
-          <button class="user-button" @click="toggleUserMenu">
-            <div class="user-avatar">
+          <button class="user-button" @click="toggleUserMenu" :class="{ 'user-button--mobile': isMobile }">
+            <div class="user-avatar" :class="{ 'user-avatar--mobile': isMobile }">
               <img v-if="authStore.user?.avatar" :src="authStore.user.avatar" alt="User" />
               <div v-else class="avatar-fallback">{{ userInitials }}</div>
             </div>
-            <div class="user-info">
+            <div class="user-info" v-if="!isMobile">
               <div class="user-name">{{ authStore.user?.name || $t('nav.account') }}</div>
               <div class="user-status">{{ $t('nav.online') }}</div>
             </div>
-            <Icon icon="ph:caret-down" class="dropdown-icon" />
+            <Icon icon="ph:caret-down" class="dropdown-icon" v-if="!isMobile" />
           </button>
         </div>
       </div>
@@ -131,13 +131,20 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { Icon } from '@iconify/vue'
 import { useAuthStore } from '../../stores/auth.store'
 import LanguageSwitcher from './LanguageSwitcher.vue'
+import { useWindowSize } from '@vueuse/core'
 
 const router = useRouter()
+const route = useRoute()
 const authStore = useAuthStore()
+const { width } = useWindowSize()
+
+const isMobile = computed(() => width.value <= 768)
+const isDashboard = computed(() => route.path === '/dashboard')
+const pageTitle = computed(() => (route.meta?.title as string) || 'Dashboard')
 
 // State
 const searchQuery = ref('')
@@ -247,14 +254,26 @@ document.addEventListener('click', (e: MouseEvent) => {
 .app-header {
   position: fixed;
   top: 0;
-  left: 280px;
+  left: 272px; /* Match sidebar width */
   right: 0;
   height: 72px;
   background: white;
   border-bottom: 1px solid #e5e7eb;
   z-index: 999;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    left: 0;
+    height: var(--mobile-header-height);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
 }
 
 .header-container {
@@ -302,6 +321,28 @@ document.addEventListener('click', (e: MouseEvent) => {
   font-weight: 800;
   font-size: 16px;
   line-height: 1;
+}
+
+/* Mobile Specific Header Elements */
+.header-center-mobile {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.mobile-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: -0.01em;
+}
+
+.header-logo-mobile .agruni-lettermark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 18px;
 }
 
 /* Right Section */
@@ -376,9 +417,9 @@ document.addEventListener('click', (e: MouseEvent) => {
   transition: all 0.2s ease;
 }
 
-.user-button:hover {
-  background: #f9fafb;
-  border-color: #d1d5db;
+.user-button--mobile {
+  border: none;
+  padding: 4px;
 }
 
 .user-avatar {
@@ -386,6 +427,14 @@ document.addEventListener('click', (e: MouseEvent) => {
   height: 32px;
   border-radius: 8px;
   overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.user-avatar--mobile {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%; /* More app-like circular avatar on mobile */
+  border: 2px solid var(--color-primary-100);
 }
 
 .user-avatar img {

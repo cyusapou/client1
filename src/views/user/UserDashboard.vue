@@ -416,6 +416,13 @@ onMounted(async () => {
   gap: 24px;
 }
 
+@media (max-width: 768px) {
+  .dashboard__bento-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
 .bento-item--half {
   width: 100%;
 }
@@ -425,6 +432,18 @@ onMounted(async () => {
   border-radius: 16px;
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .card-full-height {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 20px;
+  }
 }
 
 /* Card Header Shared */
@@ -699,6 +718,20 @@ onMounted(async () => {
   color: #64748b;
 }
 
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+  }
+}
+
 .profile-status {
   display: flex;
   align-items: center;
@@ -733,6 +766,21 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+@media (max-width: 768px) {
+  .profile-details-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .detail-pill--cell {
+    grid-column: span 1;
+  }
+  
+  .detail-pill--village,
+  .detail-pill--agent {
+    grid-column: span 2;
+  }
 }
 
 .detail-pill--district,

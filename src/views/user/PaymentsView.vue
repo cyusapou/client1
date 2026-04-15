@@ -201,6 +201,18 @@ onMounted(async () => {
   margin-bottom: var(--space-2);
 }
 
+@media (max-width: 768px) {
+  .status-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--space-6) var(--space-4);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow: var(--glass-shadow);
+  }
+}
+
 .status-danger { background-color: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
 .status-warning { background-color: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
 .status-success { background-color: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
@@ -225,6 +237,13 @@ onMounted(async () => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .debt-summary-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 }
 
 .summary-card {
@@ -279,6 +298,22 @@ onMounted(async () => {
 .selection-summary {
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .payments-view {
+    padding: var(--space-4);
+  }
+  
+  .payments-view__header {
+    text-align: center;
+  }
+  
+  .payment-actions {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
 }
 
 .selection-summary .total {
