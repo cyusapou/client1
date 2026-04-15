@@ -27,6 +27,10 @@
           </button>
         </div>
 
+        <!-- Language Switcher -->
+        <div class="header-item">
+          <LanguageSwitcher />
+        </div>
 
         <!-- User Menu -->
         <div class="header-item user-menu">
@@ -130,6 +134,7 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { Icon } from '@iconify/vue'
 import { useAuthStore } from '../../stores/auth.store'
+import LanguageSwitcher from './LanguageSwitcher.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()
