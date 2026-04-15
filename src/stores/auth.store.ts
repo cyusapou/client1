@@ -59,6 +59,7 @@ export interface User {
 }
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001'
+console.log('[DEBUG] API_BASE is set to:', API_BASE)
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref<User | null>(null)
