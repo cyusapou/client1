@@ -4,8 +4,8 @@
       <!-- Hero Section Card -->
       <BaseCard variant="elevated" padding="lg" class="hero-card">
         <div class="header-main-section">
-          <h1 class="view-title">My Debts</h1>
-          <p class="view-description">View your outstanding balances, monthly debt details, and payment progress.</p>
+          <h1 class="view-title">{{ $t('debt.title') }}</h1>
+          <p class="view-description">{{ $t('debt.description') }}</p>
         </div>
 
         <!-- Red Banner -->
@@ -27,7 +27,7 @@
               <Icon icon="ph:money-bold" />
             </div>
             <div class="summary-card__data">
-              <span class="label">Total Owed</span>
+              <span class="label">{{ $t('debt.totalOwed') }}</span>
               <span class="value amount">RWF {{ debtInfo.totalDebt.toLocaleString() }}</span>
             </div>
           </div>
@@ -39,7 +39,7 @@
               <Icon icon="ph:calendar-bold" />
             </div>
             <div class="summary-card__data">
-              <span class="label">Months Behind</span>
+              <span class="label">{{ $t('debt.monthsBehind') }}</span>
               <span class="value">{{ debtInfo.monthsBehind }} Month{{ debtInfo.monthsBehind !== 1 ? 's' : '' }}</span>
             </div>
           </div>
@@ -51,7 +51,7 @@
               <Icon icon="ph:trend-up-bold" />
             </div>
             <div class="summary-card__data">
-              <span class="label">Average Monthly</span>
+              <span class="label">{{ $t('debt.averageMonthly') }}</span>
               <span class="value amount">RWF 5,000</span>
             </div>
           </div>
@@ -61,8 +61,8 @@
       <!-- Progress Section -->
       <BaseCard variant="elevated" padding="lg" class="progress-section" v-motion-fade>
         <div class="progress-header">
-          <h3>2026 Payment Progress</h3>
-          <span class="progress-count">{{ paidMonthsCount }}/12 Months Paid</span>
+          <h3>{{ $t('debt.paymentProgress') }}</h3>
+          <span class="progress-count">{{ paidMonthsCount }}/12 {{ $t('debt.monthsPaid') }}</span>
         </div>
         <BaseProgressBar
           :value="paidMonthsCount"
@@ -70,20 +70,20 @@
           variant="success"
           show-value
         />
-        <p class="progress-hint">Regular payments keep your service active and avoid late fees.</p>
+        <p class="progress-hint">{{ $t('debt.progressHint') }}</p>
       </BaseCard>
 
       <!-- Monthly Table -->
       <div class="table-section" v-motion-fade>
         <div class="section-header">
-          <h3>Monthly Details</h3>
+          <h3>{{ $t('debt.monthlyDetails') }}</h3>
           <BaseButton 
             variant="primary" 
             size="sm" 
             iconLeft="ph:download-simple"
             @click="downloadReport"
           >
-            Download History
+            {{ $t('debt.downloadHistory') }}
           </BaseButton>
         </div>
         <BaseTable
@@ -114,20 +114,20 @@
       <div v-if="selectedMonth" class="month-detail-content">
         <div class="detail-summary">
           <div class="detail-item">
-            <span class="label">Base Service Fee</span>
+            <span class="label">{{ $t('debt.baseServiceFee') }}</span>
             <span class="value">RWF {{ selectedMonth.baseAmount.toLocaleString() }}</span>
           </div>
           <div v-if="selectedMonth.lateFee > 0" class="detail-item">
-            <span class="label">Late Fee</span>
+            <span class="label">{{ $t('debt.lateFee') }}</span>
             <span class="value text-danger">+ RWF {{ selectedMonth.lateFee.toLocaleString() }}</span>
           </div>
           <div v-if="selectedMonth.specialFee > 0" class="detail-item">
-            <span class="label">Special Collection</span>
+            <span class="label">{{ $t('debt.specialCollection') }}</span>
             <span class="value">+ RWF {{ selectedMonth.specialFee.toLocaleString() }}</span>
           </div>
           <div class="detail-divider"></div>
           <div class="detail-item total">
-            <span class="label">Total for Month</span>
+            <span class="label">{{ $t('debt.totalForMonth') }}</span>
             <span class="value">RWF {{ selectedMonth.amount.toLocaleString() }}</span>
           </div>
         </div>
@@ -140,10 +140,10 @@
 
         <div class="modal-actions">
           <BaseButton v-if="selectedMonth.status !== 'Paid'" variant="primary" block @click="openPaymentModal">
-            Pay Month Now
+            {{ $t('debt.payMonthNow') }}
           </BaseButton>
           <BaseButton variant="ghost" block @click="showDetailModal = false">
-            Close
+            {{ $t('common.close') }}
           </BaseButton>
         </div>
       </div>

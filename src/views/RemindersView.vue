@@ -8,15 +8,14 @@
           </div>
           <div class="header-content">
             <div class="title-row">
-              <h1 class="view-title">Upcoming Reminders</h1>
+              <h1 class="view-title">{{ $t('reminders.title') }}</h1>
               <div class="reminders-badge">
                 <Icon icon="ph:calendar-check" />
-                <span>Active Schedule</span>
+                <span>{{ $t('reminders.activeSchedule') }}</span>
               </div>
             </div>
             <p class="view-description">
-              Manage your upcoming waste collection days and service payment deadlines. 
-              Snooze or reschedule tasks to stay on track.
+              {{ $t('reminders.description') }}
             </p>
           </div>
         </div>
@@ -37,7 +36,7 @@
           <div class="action-divider"></div>
           <div class="view-actions">
             <BaseButton variant="primary" size="sm" iconLeft="ph:plus-bold" @click="openAddReminder">
-              Add Reminder
+              {{ $t('reminders.addReminder') }}
             </BaseButton>
           </div>
         </div>
@@ -98,10 +97,10 @@
             <Icon icon="ph:bell-slash-light" class="bell-icon" />
           </div>
         </div>
-        <h2 class="empty-title">All caught up!</h2>
-        <p class="empty-desc">You don't have any upcoming reminders. We'll notify you when something needs your attention.</p>
+        <h2 class="empty-title">{{ $t('reminders.allCaughtUp') }}</h2>
+        <p class="empty-desc">{{ $t('reminders.noRemindersDesc') }}</p>
         <BaseButton variant="outline" size="md" @click="currentFilter = 'all'">
-          Clear Filters
+          {{ $t('reminders.clearFilters') }}
         </BaseButton>
       </div>
     </div>
@@ -116,14 +115,14 @@
         <div class="warning-icon-box">
           <Icon icon="ph:warning-circle-bold" />
         </div>
-        <h3>Are you sure?</h3>
+        <h3>{{ $t('reminders.areYouSure') }}</h3>
         <p>This will permanently remove the <strong>{{ reminderToDelete?.title }}</strong> reminder. You cannot undo this action.</p>
       </div>
       
       <template #footer>
         <div class="modal-footer-actions">
-          <BaseButton variant="ghost" @click="showDeleteModal = false">Cancel</BaseButton>
-          <BaseButton variant="danger" @click="executeDelete">Delete Reminder</BaseButton>
+          <BaseButton variant="ghost" @click="showDeleteModal = false">{{ $t('common.cancel') }}</BaseButton>
+          <BaseButton variant="danger" @click="executeDelete">{{ $t('reminders.deleteReminder') }}</BaseButton>
         </div>
       </template>
     </BaseModal>
@@ -175,16 +174,16 @@
             <div :class="['custom-checkbox', { checked: form.recurring }]">
               <Icon v-if="form.recurring" icon="ph:check-bold" />
             </div>
-            <span>Recurring every month</span>
+            <span>{{ $t('reminders.recurringMonthly') }}</span>
           </div>
         </div>
       </form>
       
       <template #footer>
         <div class="modal-footer-actions">
-          <BaseButton variant="ghost" @click="showFormModal = false">Cancel</BaseButton>
+          <BaseButton variant="ghost" @click="showFormModal = false">{{ $t('common.cancel') }}</BaseButton>
           <BaseButton variant="primary" @click="handleSave">
-            {{ isEditing ? 'Save Changes' : 'Create Reminder' }}
+            {{ isEditing ? $t('reminders.saveChanges') : $t('reminders.createReminder') }}
           </BaseButton>
         </div>
       </template>

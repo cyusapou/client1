@@ -7,13 +7,13 @@
         </div>
         <div class="header-content">
           <div class="title-row">
-            <h1 class="view-title">Service Payment</h1>
+            <h1 class="view-title">{{ $t('payment.servicePayment') }}</h1>
             <div class="secure-badge">
               <Icon icon="ph:lock-fill" />
-              <span>Secure Transaction</span>
+              <span>{{ $t('payment.secureTransaction') }}</span>
             </div>
           </div>
-          <p class="view-description">Pay for waste collection and other services securely using our encrypted payment gateway.</p>
+          <p class="view-description">{{ $t('payment.paymentDescription') }}</p>
         </div>
       </div>
       
@@ -68,14 +68,14 @@
               :disabled="!selectedService"
               @click="nextStep"
             >
-              Continue to Payment Method
+              {{ $t('payment.continueToPayment') }}
             </BaseButton>
           </div>
         </div>
 
         <!-- Step 2: Payment Method -->
         <div v-if="currentStep === 2" class="payment-method-selection" v-motion-slide-right>
-          <div class="section-title">Select Payment Method</div>
+          <div class="section-title">{{ $t('payment.selectPaymentMethod') }}</div>
           <div class="method-grid">
             <div 
               v-for="method in paymentMethods" 
@@ -106,7 +106,7 @@
               v-model="phoneNumber"
               type="tel"
             />
-            <p class="input-hint">A push notification will be sent to this number to authorize the payment.</p>
+            <p class="input-hint">{{ $t('payment.pushNotificationHint') }}</p>
           </div>
 
           <!-- Specific Input for Cards -->
@@ -119,7 +119,7 @@
           </div>
 
           <div class="step-actions">
-            <BaseButton variant="ghost" @click="prevStep">Back</BaseButton>
+            <BaseButton variant="ghost" @click="prevStep">{{ $t('payment.back') }}</BaseButton>
             <BaseButton 
               variant="primary" 
               size="lg" 
@@ -127,7 +127,7 @@
               :disabled="!isReadyToPay"
               @click="processPayment"
             >
-              Complete Payment
+              {{ $t('payment.completePayment') }}
             </BaseButton>
           </div>
         </div>
@@ -137,29 +137,29 @@
           <div class="success-icon-wrapper">
             <Icon icon="ph:check-circle-fill" class="success-icon" />
           </div>
-          <h2 class="success-title">Payment Successful!</h2>
-          <p class="success-message">Your payment has been processed successfully. You can now download your receipt.</p>
+          <h2 class="success-title">{{ $t('payment.paymentSuccessful') }}</h2>
+          <p class="success-message">{{ $t('payment.paymentSuccessMessage') }}</p>
           
           <div class="receipt-summary">
             <div class="summary-item">
-              <span class="label">Reference:</span>
+              <span class="label">{{ $t('payment.reference') }}</span>
               <span class="value">#{{ Math.random().toString(36).substring(7).toUpperCase() }}</span>
             </div>
             <div class="summary-item">
-              <span class="label">Amount Paid:</span>
+              <span class="label">{{ $t('payment.amountPaid') }}</span>
               <span class="value">RWF {{ formatNumber(selectedService?.price || 0) }}</span>
             </div>
             <div class="summary-item">
-              <span class="label">Method:</span>
+              <span class="label">{{ $t('payment.method') }}</span>
               <span class="value">{{ selectedMethod?.name }}</span>
             </div>
           </div>
 
           <div class="success-actions">
             <BaseButton variant="primary" size="lg" iconLeft="ph:download-simple-bold" @click="downloadReceipt">
-              Download Receipt
+              {{ $t('payment.downloadReceipt') }}
             </BaseButton>
-            <BaseButton variant="primary" size="lg" @click="resetPayment">Return to Dashboard</BaseButton>
+            <BaseButton variant="primary" size="lg" @click="resetPayment">{{ $t('payment.returnToDashboard') }}</BaseButton>
           </div>
         </div>
       </div>

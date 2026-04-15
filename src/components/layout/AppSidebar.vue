@@ -40,7 +40,7 @@
       </div>
 
       <div class="nav-section">
-        <div v-if="!isCollapsed" class="nav-section-title">Finance & Status</div>
+        <div v-if="!isCollapsed" class="nav-section-title">{{ $t('sidebar.financeStatus') }}</div>
         <ul class="nav-list">
           <li class="nav-item">
             <router-link to="/reminders" class="nav-link" active-class="nav-link--active" :data-tooltip="$t('nav.reminders')">
@@ -60,7 +60,7 @@
       </div>
 
       <div class="nav-section">
-        <div v-if="!isCollapsed" class="nav-section-title">Communication</div>
+        <div v-if="!isCollapsed" class="nav-section-title">{{ $t('sidebar.communication') }}</div>
         <ul class="nav-list">
           <li class="nav-item">
             <router-link to="/messages" class="nav-link" active-class="nav-link--active" :data-tooltip="$t('nav.messages')">
@@ -73,7 +73,7 @@
       </div>
 
       <div class="nav-section">
-        <div v-if="!isCollapsed" class="nav-section-title">Profile</div>
+        <div v-if="!isCollapsed" class="nav-section-title">{{ $t('sidebar.profile') }}</div>
         <ul class="nav-list">
           <li class="nav-item">
             <router-link to="/account" class="nav-link" active-class="nav-link--active" :data-tooltip="$t('nav.account')">

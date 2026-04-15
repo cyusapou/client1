@@ -15,9 +15,9 @@
         <!-- Crisis Header - Debt Banner -->
         <div v-if="hasDebt" class="dashboard__crisis-header">
           <DebtBanner
-            :total-debt="debtInfo.totalDebt"
-            :weeks-owed="debtInfo.weeksOwed"
-            :months-behind="debtInfo.monthsBehind"
+            :total-debt="(debtInfo as any).totalDebt"
+            :weeks-owed="(debtInfo as any).weeksOwed"
+            :months-behind="(debtInfo as any).monthsBehind"
             @pay-now="openPaymentModal"
           />
         </div>
@@ -204,7 +204,7 @@
       <PaymentConfirmModal
         v-model="showPaymentModal"
         :weeks="selectedWeeks"
-        @confirm="handlePaymentConfirm"
+        @confirm="(pin: any) => handlePaymentConfirm(pin)"
       />
 
       <BaseBottomSheet
