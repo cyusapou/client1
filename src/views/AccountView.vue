@@ -1,10 +1,5 @@
 <template>
   <div class="account-page">
-    <div class="view-header" v-motion-fade>
-      <h1 class="view-title">{{ $t('account.title') }}</h1>
-      <p class="view-description">{{ $t('account.description') }}</p>
-    </div>
-
     <!-- Hero Card -->
     <div class="profile-card" v-motion-slide-top>
       <div class="profile-header">

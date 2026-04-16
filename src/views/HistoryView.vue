@@ -8,13 +8,11 @@
           </div>
           <div class="header-content">
             <div class="title-row">
-              <h1 class="view-title">Payment History</h1>
               <div class="history-badge">
                 <Icon icon="ph:file-text-fill" />
                 <span>Transaction Record</span>
               </div>
             </div>
-            <p class="view-description">View and export your waste collection service payments securely from your digital ledger.</p>
           </div>
         </div>
 

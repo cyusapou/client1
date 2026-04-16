@@ -1,15 +1,8 @@
 <template>
   <div class="support-view">
     <div class="support-layout">
-      <!-- Info Section -->
-      <div class="info-section">
-        <div class="support-header">
-          <h1>Support Chat</h1>
-          <p>Talk directly with your assigned worker at Agruni.</p>
-        </div>
-
-        <div v-if="worker" class="worker-card">
-          <div class="worker-avatar">
+      <!-- Info Section -->      <div class=\"info-section\">
+        <div v-if=\"worker\" class=\"worker-card\">          <div class="worker-avatar">
             <Icon icon="ph:user-circle-gear" />
           </div>
           <div class="worker-info">

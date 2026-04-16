@@ -8,15 +8,11 @@
           </div>
           <div class="header-content">
             <div class="title-row">
-              <h1 class="view-title">{{ $t('reminders.title') }}</h1>
               <div class="reminders-badge">
                 <Icon icon="ph:calendar-check" />
                 <span>{{ $t('reminders.activeSchedule') }}</span>
               </div>
             </div>
-            <p class="view-description">
-              {{ $t('reminders.description') }}
-            </p>
           </div>
         </div>
 

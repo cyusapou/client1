@@ -1,10 +1,5 @@
 <template>
   <div class="payments-view">
-    <div class="payments-view__header">
-      <h1>Payments</h1>
-      <p>Manage your waste collection payments</p>
-    </div>
-    
     <div class="payments-view__content">
       <!-- Debt Status Banner -->
       <div v-if="debtInfo.totalDebt > 0" :class="['status-banner', statusClass]">

@@ -1,10 +1,5 @@
 <template>
   <div class="help-center-page">
-    <div class="view-header" v-motion-fade>
-      <h1 class="view-title">{{ $t('help.title') }}</h1>
-      <p class="view-description">{{ $t('help.description') }}</p>
-    </div>
-
     <!-- Search Section -->
     <div class="search-section" v-motion-slide-top>
       <div class="search-bar">

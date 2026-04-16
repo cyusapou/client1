@@ -3,10 +3,6 @@
     <div class="view-header" v-motion-fade>
       <!-- Hero Section Card -->
       <BaseCard variant="elevated" padding="lg" class="hero-card">
-        <div class="header-main-section">
-          <h1 class="view-title">{{ $t('debt.title') }}</h1>
-          <p class="view-description">{{ $t('debt.description') }}</p>
-        </div>
 
         <!-- Red Banner -->
         <div v-if="debtInfo.totalDebt > 0" class="banner-section" v-motion-slide-top>

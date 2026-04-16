@@ -7,13 +7,11 @@
         </div>
         <div class="header-content">
           <div class="title-row">
-            <h1 class="view-title">{{ $t('payment.servicePayment') }}</h1>
             <div class="secure-badge">
               <Icon icon="ph:lock-fill" />
               <span>{{ $t('payment.secureTransaction') }}</span>
             </div>
           </div>
-          <p class="view-description">{{ $t('payment.paymentDescription') }}</p>
         </div>
       </div>
       

@@ -1,10 +1,5 @@
 <template>
   <div class="settings-page">
-    <div class="view-header" v-motion-fade>
-      <h1 class="view-title">{{ $t('settings.title') }}</h1>
-      <p class="view-description">{{ $t('settings.description') }}</p>
-    </div>
-
     <div class="settings-container">
       <!-- Profile Shortcut -->
       <BaseCard variant="elevated" padding="md" class="profile-link-card" v-motion-fade>
